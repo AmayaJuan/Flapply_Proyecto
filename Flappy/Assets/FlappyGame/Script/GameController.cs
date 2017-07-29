@@ -5,9 +5,12 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public GameObject gameOverText;
-    public Text scoreText;
+    public bool game;
     public bool gameOver;
+    public GameObject gameOverText;
+    public GameObject PlayGame;
+    public GameObject Score;
+    public Text scoreText;
     public float scrollSpeed = -1.5f;
 
     int score;
@@ -19,12 +22,16 @@ public class GameController : MonoBehaviour
         else if (GameController.instance != this)
             Destroy(gameObject);
     }
-	
-	void Update ()
+
+    void Update()
     {
-        if (gameOver && Input.GetMouseButton(0))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	}
+        if(!game && Input.GetMouseButton(0))
+        {
+            PlayGame.SetActive(false);
+            Score.SetActive(true);
+            game = true;
+        }
+    }
 
     public void BirdDie()
     {

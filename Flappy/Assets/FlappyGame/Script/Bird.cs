@@ -2,6 +2,7 @@
 
 public class Bird : MonoBehaviour
 {
+    RorateBird rotateBird;
     bool isDead;
     float upForce = 200f;
     Rigidbody2D rb;
@@ -11,13 +12,14 @@ public class Bird : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rotateBird = GetComponent<RorateBird>();
     }
 
 	void Update ()
     {
         if (isDead) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (GameController.instance.game && Input.GetMouseButtonDown(0))
         {
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * upForce);
@@ -30,6 +32,7 @@ public class Bird : MonoBehaviour
     {
         isDead = true;
         animator.SetTrigger("Die");
+        rotateBird.enabled = false;
         GameController.instance.BirdDie();
         rb.velocity = Vector2.zero;
         SoundSystem.instance.PlayHit();
