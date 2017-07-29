@@ -5,13 +5,9 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public bool game;
     public bool gameOver;
     public GameObject gameOverText;
-    public GameObject PlayGame;
-    public GameObject Score;
     public Text scoreText;
-    public float scrollSpeed = -1.5f;
 
     int score;
 
@@ -21,16 +17,6 @@ public class GameController : MonoBehaviour
             GameController.instance = this;
         else if (GameController.instance != this)
             Destroy(gameObject);
-    }
-
-    void Update()
-    {
-        if(!game && Input.GetMouseButton(0))
-        {
-            PlayGame.SetActive(false);
-            Score.SetActive(true);
-            game = true;
-        }
     }
 
     public void BirdDie()

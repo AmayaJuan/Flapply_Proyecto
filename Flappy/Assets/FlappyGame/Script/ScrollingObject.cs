@@ -2,6 +2,8 @@
 
 public class ScrollingObject : MonoBehaviour
 {
+    public int nivel;
+    float scrollSpeed = -1.5f;
     Rigidbody2D rb;
 
     void Awake()
@@ -11,12 +13,15 @@ public class ScrollingObject : MonoBehaviour
 
     void Start ()
     {
-        rb.velocity = new Vector2(GameController.instance.scrollSpeed, 0);
+        rb.velocity = new Vector2(scrollSpeed, 0);
     }
 	
 	void Update ()
     {
-        if (GameController.instance.gameOver)
-            rb.velocity = Vector2.zero;
+        if (nivel == 1)
+        {
+            if (GameController.instance.gameOver)
+                rb.velocity = Vector2.zero;
+        }
 	}
 }

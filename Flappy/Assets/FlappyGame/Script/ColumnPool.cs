@@ -16,28 +16,22 @@ public class ColumnPool : MonoBehaviour
 
     void Start ()
     {
-        if (GameController.instance.game)
-        {
-            columns = new GameObject[columnPoolSize];
-            for (int i = 0; i < columnPoolSize; i++)
-                columns[i] = Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
+        columns = new GameObject[columnPoolSize];
+        for (int i = 0; i < columnPoolSize; i++)
+            columns[i] = Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
 
-            SpawnColumn();
-        }
+        SpawnColumn();
     }
 
     void Update()
     {
-        if (GameController.instance.game)
-        {
-            spawRate = Random.Range(4, 6);
-            timeSinceLastSpawned += Time.deltaTime;
+        spawRate = Random.Range(4, 6);
+        timeSinceLastSpawned += Time.deltaTime;
 
-            if (!GameController.instance.gameOver && timeSinceLastSpawned > spawRate)
-            {
-                timeSinceLastSpawned = 0;
-                SpawnColumn();
-            }
+        if (!GameController.instance.gameOver && timeSinceLastSpawned > spawRate)
+        {
+            timeSinceLastSpawned = 0;
+            SpawnColumn();
         }
     }
 

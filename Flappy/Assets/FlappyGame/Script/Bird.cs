@@ -19,7 +19,7 @@ public class Bird : MonoBehaviour
     {
         if (isDead) return;
 
-        if (GameController.instance.game && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * upForce);
