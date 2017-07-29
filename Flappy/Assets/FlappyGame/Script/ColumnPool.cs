@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ColumnPool : MonoBehaviour
 {
     public int columnPoolSize = 5;
     public GameObject columnPrefab;
-    
 
     GameObject[] columns;
     Vector2 objectPoolPosition = new Vector2(-14, 0);
@@ -22,9 +19,10 @@ public class ColumnPool : MonoBehaviour
         columns = new GameObject[columnPoolSize];
         for (int i = 0; i < columnPoolSize; i++)
             columns[i] = Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
-	}
-	
-	void Update ()
+        SpawnColumn();
+    }
+
+    void Update()
     {
         spawRate = Random.Range(4, 6);
         timeSinceLastSpawned += Time.deltaTime;
@@ -32,11 +30,17 @@ public class ColumnPool : MonoBehaviour
         if (!GameController.instance.gameOver && timeSinceLastSpawned > spawRate)
         {
             timeSinceLastSpawned = 0;
-            float spawYPosition = Random.Range(columnMin, columnMax);
-            columns[currentColumn].transform.position = new Vector2(spawXPosition, spawYPosition);
-            currentColumn++;
-            if (currentColumn >= columnPoolSize)
-                currentColumn = 0;
+            SpawnColumn();
         }
-	}
+    }
+
+    void SpawnColumn()
+    {
+        float spawYPosition = Random.Range(columnMin, columnMax);
+        columns[currentColumn].transform.position = new Vector2(spawXPosition, spawYPosition);
+
+        currentColumn++;
+        if (currentColumn >= columnPoolSize)
+            currentColumn = 0;
+    }
 }

@@ -22,6 +22,7 @@ public class Bird : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * upForce);
             animator.SetTrigger("Flap");
+            SoundSystem.instance.PlayFlap();
         }
 	}
 
@@ -31,5 +32,6 @@ public class Bird : MonoBehaviour
         animator.SetTrigger("Die");
         GameController.instance.BirdDie();
         rb.velocity = Vector2.zero;
+        SoundSystem.instance.PlayHit();
     }
 }
