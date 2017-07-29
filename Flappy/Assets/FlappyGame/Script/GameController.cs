@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -8,6 +6,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     public GameObject gameOverText;
     public bool gameOver;
+    public float scrollSpeed = -1.5f;
 
     void Awake()
     {
@@ -16,11 +15,6 @@ public class GameController : MonoBehaviour
         else if (GameController.instance != this)
             Destroy(gameObject);
     }
-
-    void Start ()
-    {
-		
-	}
 	
 	void Update ()
     {
@@ -38,6 +32,5 @@ public class GameController : MonoBehaviour
     {
         if (GameController.instance == this)
             GameController.instance = null;
-        
     }
 }

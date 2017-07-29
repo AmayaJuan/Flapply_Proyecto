@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
@@ -15,11 +13,6 @@ public class Bird : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Start ()
-    {
-		
-	}
-	
 	void Update ()
     {
         if (isDead) return;
@@ -30,7 +23,6 @@ public class Bird : MonoBehaviour
             rb.AddForce(Vector2.up * upForce);
             animator.SetTrigger("Flap");
         }
-        
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -38,5 +30,6 @@ public class Bird : MonoBehaviour
         isDead = true;
         animator.SetTrigger("Die");
         GameController.instance.BirdDie();
+        rb.velocity = Vector2.zero;
     }
 }
